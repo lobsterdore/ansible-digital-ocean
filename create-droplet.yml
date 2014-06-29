@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  serial: 1
+  vars_files:
+    - vars/digital-ocean.yml
+    - vars/puppet.yml
+  tasks:
+    - include: tasks/new-droplet.yml
+    - include: tasks/prepare-puppet.yml
+
+- hosts: newdroplet
+  remote_user: root
+  connection: ssh
+  tasks:
+    - include: tasks/setup-puppet.yml

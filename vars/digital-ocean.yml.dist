@@ -1,0 +1,6 @@
+# DO credentials
+do_client_id: [CLIENT_ID]
+do_api_key: [API_KEY]
+
+# ID of your ssh key in DO
+do_ssh_key_id: [SSH_KEY_ID]

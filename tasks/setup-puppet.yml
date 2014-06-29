@@ -1,0 +1,5 @@
+- name: Installing Puppet
+  apt: name=puppet state=present update_cache=yes
+- name: Bootstrapping puppet
+  unarchive: src=files/puppet.tar.gz dest=/etc
+- shell: 'puppet apply /etc/puppet/manifests/site.pp'

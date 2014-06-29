@@ -1,0 +1,9 @@
+- name: Clone puppet repo
+  git: >
+    repo="{{ puppet_repo_url }}"
+    dest="files/puppet"
+- name: Archive puppet repo
+  shell: 'tar -zcvf puppet.tar.gz puppet'
+  args:
+    chdir: files/
+
