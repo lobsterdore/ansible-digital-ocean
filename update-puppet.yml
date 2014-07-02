@@ -7,10 +7,8 @@
   tasks:
     - include: tasks/prepare-puppet.yml
 
+# Specify user with -u flag when running
 - hosts: master-droplets
-  remote_user: remoteuser
   sudo: yes
-  vars_files:
-    - vars/digital-ocean.yml
   tasks:
     - include: tasks/setup-puppet.yml
