@@ -1,5 +1,8 @@
-- name: Installing Puppet
+- name: Setting up Puppet
   apt: name=puppet state=present update_cache=yes
 - name: Bootstrapping puppet
   unarchive: src=files/puppet.tar.gz dest=/etc
-- shell: 'puppet apply /etc/puppet/manifests/site.pp'
+  shell: 'mkdir -p /etc/facter'
+  shell: 'mkdir -p /etc/facter/facts.d'
+  shell: 'echo "instance_role=webserver" > /etc/facter/facts.d/instance_role.txt'
+  shell: 'puppet apply /etc/puppet/manifests/site.pp --modulepath=/etc/puppet/modules --fileserverconfig=/etc/puppet/fileserver.conf --hiera_config=/etc/puppet/hiera.yaml'

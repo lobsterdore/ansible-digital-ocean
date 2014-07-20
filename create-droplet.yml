@@ -4,13 +4,19 @@
   serial: 1
   vars_files:
     - vars/digital-ocean.yml
-    - vars/puppet.yml
+    - vars/droplets.yml
+#    - vars/puppet.yml
   tasks:
-    - include: tasks/new-droplet.yml
-    - include: tasks/prepare-puppet.yml
+    - include: tasks/new-droplet.yml droplets={{droplets}}
+#    - include: tasks/prepare-puppet.yml
 
-- hosts: newdroplet
-  remote_user: root
-  connection: ssh
-  tasks:
-    - include: tasks/setup-puppet.yml
+#- hosts: newdroplet
+#  remote_user: root
+#  connection: ssh
+#  tasks:
+#    - include: tasks/setup-puppet.yml
+
+
+
+#  tasks:
+#    - include: tasks/create_droplet.yml droplets={{droplets}}
