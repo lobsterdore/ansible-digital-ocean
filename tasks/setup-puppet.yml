@@ -1,8 +1,7 @@
-- name: Setting up Puppet
-  apt: name=puppet state=present update_cache=yes
-- name: Bootstrapping puppet
-  unarchive: src=files/puppet.tar.gz dest=/etc
-  shell: 'mkdir -p /etc/facter'
-  shell: 'mkdir -p /etc/facter/facts.d'
-  shell: 'echo "instance_role=webserver" > /etc/facter/facts.d/instance_role.txt'
-  shell: 'puppet apply /etc/puppet/manifests/site.pp --modulepath=/etc/puppet/modules --fileserverconfig=/etc/puppet/fileserver.conf --hiera_config=/etc/puppet/hiera.yaml'
+- shell: 'echo {{ instance_role }}'
+
+#- name: Setting up Puppet
+#  apt: name=puppet state=present upgrade=yes update_cache=yes
+#- unarchive: src=files/puppet.tar.gz dest=/etc
+#- name: Bootstrapping puppet
+#  shell: 'bash /etc/puppet/bootstrap.sh'

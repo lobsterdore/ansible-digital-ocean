@@ -1,3 +1,4 @@
+
 - name: Ensure droplet exists
   digital_ocean: >
     state=present
@@ -11,19 +12,20 @@
     image_id={{ item.image|default(do_default_image) }}
     wait_timeout=600
     unique_name=true
-  register: new_droplet
+  register: new_droplets
   with_items: droplets
 
-- debug: >  tasks:
-    msg="ID is {{ new_droplet.droplet.id }}"
 - debug: >
-    msg="IP is {{ new_droplet.droplet.ip_address }}"
+    msg="IP is {{ item.droplet.ip_address }}"
+  with_items: new_droplets.results
 
 - name: Ensure new Droplets IP is not in known hosts
-  shell: 'ssh-keygen -f "$HOME/.ssh/known_hosts" -R {{ new_droplet.droplet.ip_address }}'
+  shell: 'ssh-keygen -f "$HOME/.ssh/known_hosts" -R {{ item.droplet.ip_address }}'
+  when: item.changed
+  with_items: new_droplets.results
 
-- name: Adding new Droplet to hosts
-  add_host: name={{ new_droplet.droplet.ip_address }} groups=droplets
-
-#- debug: msg="IP is {{ item.droplet.ip_address }}"
-#  with_items: droplet.results    - include: tasks/create_droplet.yml droplets={{droplets}}
+- name: Adding new Droplets to hosts
+  #debug: "{{ item.['item']['instance_role'] }}"
+  add_host: name={{ item.droplet.ip_address }} groups=new_droplets instance_role={{ item.item.instance_role }}
+  when: item.changed
+  with_items: new_droplets.results

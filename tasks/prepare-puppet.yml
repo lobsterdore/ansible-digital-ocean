@@ -2,6 +2,7 @@
   git: >
     repo="{{ puppet_repo_url }}"
     dest="files/puppet"
+    version="{{ puppet_repo_branch }}"
 - name: Archive puppet repo
   shell: 'tar -zcvf puppet.tar.gz puppet'
   args:
