@@ -1,7 +1,10 @@
-- shell: 'echo {{ instance_role }}'
 
-#- name: Setting up Puppet
-#  apt: name=puppet state=present upgrade=yes update_cache=yes
-#- unarchive: src=files/puppet.tar.gz dest=/etc
-#- name: Bootstrapping puppet
-#  shell: 'bash /etc/puppet/bootstrap.sh'
+- name: Installing Puppet
+  apt: name=puppet state=present update_cache=yes
+- name: Bootstrapping puppet
+  shell: 'rm -rf /etc/puppet'
+- copy: src=files/puppet.tar.gz dest=/etc
+- shell: 'tar -xvzf puppet.tar.gz'
+  args:
+    chdir: /etc
+- shell: 'bash /etc/puppet/bootstrap.sh {{ instance_role }}'

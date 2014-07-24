@@ -8,13 +8,10 @@
     - vars/puppet.yml
   tasks:
     - include: tasks/new-droplet.yml droplets={{droplets}}
-#    - include: tasks/prepare-puppet.yml
+    - include: tasks/prepare-puppet.yml
 
 - hosts: new_droplets
   remote_user: root
   connection: ssh
   tasks:
-    - debug: >
-        msg="System {{ instance_role }}"
-
-#    - include: tasks/setup-puppet.yml instance_role={{ instance_role }}
+    - include: tasks/setup-puppet.yml

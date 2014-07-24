@@ -10,7 +10,7 @@
     size_id={{ item.size|default(do_default_size) }}
     region_id={{ item.region|default(do_default_region) }}
     image_id={{ item.image|default(do_default_image) }}
-    wait_timeout=600
+    wait_timeout=1000
     unique_name=true
   register: new_droplets
   with_items: droplets
@@ -25,7 +25,6 @@
   with_items: new_droplets.results
 
 - name: Adding new Droplets to hosts
-  #debug: "{{ item.['item']['instance_role'] }}"
   add_host: name={{ item.droplet.ip_address }} groups=new_droplets instance_role={{ item.item.instance_role }}
   when: item.changed
   with_items: new_droplets.results
