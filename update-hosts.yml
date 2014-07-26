@@ -1,0 +1,6 @@
+---
+- hosts: droplets
+  sudo: yes
+  tasks:
+    - template: src=templates/hosts.j2 dest=/etc/hosts owner=root mode=0644
+
