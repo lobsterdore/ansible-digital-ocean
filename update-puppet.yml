@@ -11,4 +11,4 @@
 - hosts: master-droplets
   sudo: yes
   tasks:
-    - include: tasks/setup-puppet.yml
+    - include: tasks/update-puppet.yml
