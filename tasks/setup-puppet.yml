@@ -1,6 +1,8 @@
 
 - name: Installing Puppet
   apt: name=puppet state=present update_cache=yes
+- name: Enable Puppet
+  shell: puppet agent --enable
 - name: Bootstrapping puppet
   shell: 'rm -rf /etc/puppet'
 - copy: src=files/puppet.tar.gz dest=/etc

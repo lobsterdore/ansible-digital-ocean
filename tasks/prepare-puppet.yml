@@ -7,4 +7,3 @@
   shell: 'tar -zcvf puppet.tar.gz puppet'
   args:
     chdir: files/
-
