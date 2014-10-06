@@ -1,3 +1,4 @@
+
 - name: Clone puppet repo
   git: >
     repo="{{ puppet_repo_url }}"
