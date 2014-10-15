@@ -1,0 +1,6 @@
+copy-db.yml
+
+
+# Accepts target server
+# Dump db and compress
+# Copy to target and import to mysql

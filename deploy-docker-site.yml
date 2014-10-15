@@ -1,0 +1,6 @@
+---
+- hosts: web-droplets
+  sudo: yes
+  tasks:
+    - include: tasks/deploy-docker.yml
+
