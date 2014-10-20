@@ -1,6 +1,11 @@
 ---
+- hosts: localhost
+  connection: local
+  serial: 1
+  tasks:
+    - include: tasks/docker-prepare-site.yml
+
 - hosts: web-droplets
   sudo: yes
   tasks:
-    - include: tasks/deploy-docker.yml
-
+    - include: tasks/docker-push-site.yml git_build_version={{build_version}}
