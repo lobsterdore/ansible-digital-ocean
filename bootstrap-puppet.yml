@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  serial: 1
+  vars_files:
+    - vars/puppet.yml
+  tasks:
+    - include: tasks/prepare-puppet.yml
+
+# Specify user with -u flag when running
+- hosts: db-droplets
+  sudo: yes
+  tasks:
+    - include: tasks/setup-puppetmaster.yml

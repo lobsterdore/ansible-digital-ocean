@@ -8,4 +8,4 @@
 - hosts: web-droplets
   sudo: yes
   tasks:
-    - include: tasks/docker-push-site.yml git_build_version={{build_version}}
+    - include: tasks/docker-push-site.yml

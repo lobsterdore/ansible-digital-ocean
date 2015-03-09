@@ -1,0 +1,14 @@
+
+- name: Installing Puppet
+  apt: name=puppet state=present update_cache=yes
+- name: Enable Puppet
+  shell: puppet agent --enable
+#- name: Installing Puppetmaster
+#  apt: name=puppetmaster state=present update_cache=yes
+- name: Bootstrapping puppet
+  shell: 'rm -rf /etc/puppet'
+- copy: src=files/puppet.tar.gz dest=/etc
+- shell: 'tar -xvzf puppet.tar.gz'
+  args:
+    chdir: /etc
+- shell: 'bash /etc/puppet/update.sh'
