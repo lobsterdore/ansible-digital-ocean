@@ -1,0 +1,10 @@
+---
+droplets:
+  - name: lobsterdore-dbmaster-01
+    instance_role: dbmaster
+#  - name: lobsterdore-webserver-01
+#    instance_role: webserver
+#  - name: lobsterdore-webserver-02
+#    instance_role: webserver
+#  - name: lobsterdore-loadbalancer-01
+#    instance_role: loadbalancer

@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  serial: 1
+  vars_files:
+    - vars/puppet.yml
+  tasks:
+    - include: tasks/prepare-puppet.yml
+
+# Specify user with -u flag when running
+# --extra-vars="hosts=some-hosts"
+- hosts: $hosts
+  sudo: yes
+  tasks:
+    - include: tasks/update-puppet.yml

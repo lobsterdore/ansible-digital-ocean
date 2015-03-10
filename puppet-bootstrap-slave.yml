@@ -3,14 +3,13 @@
   connection: local
   serial: 1
   vars_files:
-    - vars/digital-ocean.yml
     - vars/puppet.yml
   tasks:
-    - include: tasks/new-droplet.yml
     - include: tasks/prepare-puppet.yml
 
-- hosts: newdroplet
-  remote_user: root
-  connection: ssh
+# Specify user with -u flag when running
+# --extra-vars="hosts=some-hosts"
+- hosts: $hosts
+  sudo: yes
   tasks:
     - include: tasks/setup-puppet.yml
