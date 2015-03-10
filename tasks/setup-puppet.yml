@@ -3,9 +3,6 @@
   apt: name=puppet state=present update_cache=yes
 - name: Enable Puppet
   shell: puppet agent --enable
-- name: Installing Puppetmaster
-  apt: name=puppetmaster state=present update_cache=yes
-  when: instance_role == "master"
 - name: Bootstrapping puppet
   shell: 'rm -rf /etc/puppet'
 - copy: src=files/puppet.tar.gz dest=/etc

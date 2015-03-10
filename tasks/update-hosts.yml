@@ -1,3 +1,0 @@
-{% for k,v in hostvars.iteritems() %}
-{{v['ansible_eth0']['ipv4']['address']}} {{ k }}
-{% endfor %}
