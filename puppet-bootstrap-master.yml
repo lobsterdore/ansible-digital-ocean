@@ -8,8 +8,7 @@
     - include: tasks/prepare-puppet.yml
 
 # Specify user with -u flag when running
-# --extra-vars="hosts=some-hosts"
-- hosts: $hosts
+- hosts: master-droplets
   sudo: yes
   tasks:
     - include: tasks/setup-puppetmaster.yml

@@ -9,4 +9,4 @@
 - shell: 'tar -xvzf puppet.tar.gz'
   args:
     chdir: /etc
-- shell: 'bash /etc/puppet/bootstrap.sh {{ instance_role }}'
+- shell: 'bash /etc/puppet/update.sh'
